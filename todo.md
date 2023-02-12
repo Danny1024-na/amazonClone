@@ -1,0 +1,21 @@
+-brand detail
+-generate dummy data
+-qeuryset API-----> debuginig
+-users
+-dashboard
+-cart
+-checkout
+-coupons
+-home
+-nav, footer
+-payment
+-ajax
+
+-celery
+-redis
+-docker
+-cahcing
+
+-deploy
+-testing
+-aws
