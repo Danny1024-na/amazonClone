@@ -57,10 +57,11 @@
                     {% for object in brand_list %}
                     <div class="col all vegetables">
                         <div class="brand-wrap">
-                            <div class="brand-media">
-                                <img src="{{object.img.url}}" alt="brand">
+                            <div class="brand-media"><a href="{% url 'products:brand_detail' object.slug %}">
+                                <img src="{{object.img.url}}" alt="brand"></a>
                                 <div class="brand-overlay">
-                                    <a href="{% url 'product:brand_detail' object.slug %}"><i class="fas fa-link"></i></a>
+                                <a href="{% url 'products:brand_detail' object.slug %}"><i class="fas fa-link">
+                                    </i></a>
                                 </div>
                             </div>
                             <div class="brand-meta">
