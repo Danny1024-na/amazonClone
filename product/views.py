@@ -14,12 +14,18 @@ class ProductDetail(DetailView):
 class BrandList(ListView):
     model = Brand
     paginate_by =50
-    # give me the number of relations between product and brand
     queryset=Brand.objects.all().annotate(prod_count=Count('product_brand')) # data zurück [:1] return nur erste Brand
 
-class BrandDetail(DetailView):
-    model = Brand
+class BrandDetail(ListView):
+    model = Product ### Achtuuuunnnnggggg!!!!
 
     def get_queryset(self):
-        queryset=Brand.objects.filter(slug=self.kwargs['slug']).annotate(prod_count=Count('product_brand'))
+        brand =Brand.objects.get(slug=self.kwargs['slug'])
+        queryset=Product.objects.filter(brand=brand)
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["brand"] = Brand.objects.filter(slug=self.kwargs['slug']).annotate(prod_count=Count('product_brand'))[0] #the slug from the last methode
+        return context
+    
