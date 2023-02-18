@@ -7,7 +7,7 @@ from django.utils.text import slugify
 
 
 PRODUCT_FLAG ={
-    ('Sale','Sales'),
+    ('Sale','Sale'),
     ('Feature','Feature'),
     ('New','New'),
 }
@@ -24,7 +24,7 @@ class Product(models.Model):
     subtitle = models.TextField(_('subtitle'),max_length=500)
     description = models.TextField(_('description'),max_length=200)
     slug = models.SlugField(null=True,blank=True) # um ein link mit dem Title übereinzustimmen also derselbe Name
-    quantitiy =models.IntegerField(default=1)
+    quantity =models.IntegerField(default=1)
     def __str__ (self):
         return self.name
     def save (self, *args, **kwargs):
@@ -72,7 +72,7 @@ product
 
 class Brand(models.Model):
     name =models.CharField(_('brand'),max_length=30)
-    img=models.ImageField(_('image'),upload_to='product_images/', height_field=None, width_field=None, max_length=None)
+    img=models.ImageField(_('image'),upload_to='brand/', height_field=None, width_field=None, max_length=None)
     slug = models.SlugField(null=True,blank=True)
     def __str__(self):
         return self.name

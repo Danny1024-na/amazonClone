@@ -6,14 +6,14 @@ from django.db.models import Count
 
 class ProductList(ListView):
     model = Product
-    paginate_by=1
+    paginate_by=50
 
 class ProductDetail(DetailView):
     model = Product
 
 class BrandList(ListView):
     model = Brand
-    paginate_by =1
+    paginate_by =50
     # give me the number of relations between product and brand
     queryset=Brand.objects.all().annotate(prod_count=Count('product_brand')) # data zurück [:1] return nur erste Brand
 
