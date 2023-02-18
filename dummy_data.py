@@ -43,9 +43,9 @@ def seed_product(n):
             brand=brand,
             subtitle=subtitle,
             description =description,
-            quantity=quantity
+            quantity=quantity,
         )
 
 
 seed_brand(20)
-seed_product(3000)
+seed_product(30)
