@@ -1,8 +1,19 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Product,Brand
-from django.db.models import Count
+from django.db.models import Count,Q,F
 # Create your views here.
+
+def query_debug(request):
+    #data=Product.objects.filter(name__contains='michael ',price__gt=30)
+    #data=Product.objects.filter(Q(name__contains='michael') | Q (price__gt=30))
+    #data=Product.objects.filter(price=F('quantity'))
+    #data=Product.objects.all().order_by('-name')
+    #data=Product.objects.filter(name__contains='michael ',price__gt=30).order_by('-name')
+    #data=Product.objects.only('id','brand')
+    data=Product.objects.select_related('brand').all()
+    return render(request,'product\productlist.html',{'data':data})
+
 
 class ProductList(ListView):
     model = Product
