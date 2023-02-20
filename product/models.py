@@ -12,6 +12,21 @@ PRODUCT_FLAG ={
     ('New','New'),
 }
 
+class Brand(models.Model):
+    name =models.CharField(_('brand'),max_length=30)
+    img=models.ImageField(_('image'),upload_to='brand/', height_field=None, width_field=None, max_length=None)
+    slug = models.SlugField(null=True,blank=True)
+    def __str__(self):
+        return self.name
+    def save (self, *args, **kwargs): #auto save for the emptey slugs 
+        self.slug =slugify(self.name)
+        super(Brand,self).save(*args , **kwargs)
+'''
+name
+img
+
+'''
+
 # Create your models here.
 class Product(models.Model):
     name =models.CharField(_('Name'),max_length=150)
@@ -70,15 +85,4 @@ review
 product
 '''
 
-class Brand(models.Model):
-    name =models.CharField(_('brand'),max_length=30)
-    img=models.ImageField(_('image'),upload_to='brand/', height_field=None, width_field=None, max_length=None)
-    slug = models.SlugField(null=True,blank=True)
-    def __str__(self):
-        return self.name
 
-'''
-name
-img
-
-'''
