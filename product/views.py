@@ -33,7 +33,7 @@ def query_debug(request):
 
     return render(request,'product\productlist.html',{'data':data})
 
-def addReview(request,slug):
+def add_review(request,slug):
     if request.method == 'POST':
         form =ProductReviewForm(request.POST)
         if form.is_valid():
