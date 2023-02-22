@@ -1,0 +1,25 @@
+{% for item in reviews %}
+   <li class="review-item">
+        <div class="review-media">
+            <a class="review-avatar" href="#">
+                <img src="images/avatar/01.jpg" alt="review">
+            </a>
+            <h5 class="review-meta">
+            <a href="#">{{item.user}}</a>
+            <span>June 02, 2020</span>
+            </h5>
+        </div>
+        <ul class="review-rating">
+            <li class="{% if item.rate > 0 %}icofont-ui-rating {% else %} icofont-ui-rate-blank {% endif %}"></li>
+            <li class="{% if item.rate > 1 %}icofont-ui-rating {% else %} icofont-ui-rate-blank {% endif %}"></li>
+            <li class="{% if item.rate > 2 %}icofont-ui-rating {% else %} icofont-ui-rate-blank {% endif %}"></li>
+            <li class="{% if item.rate > 3 %}icofont-ui-rating {% else %} icofont-ui-rate-blank {% endif %}"></li>
+            <li class="{% if item.rate > 4 %}icofont-ui-rating {% else %} icofont-ui-rate-blank {% endif %}"></li>
+        </ul>
+        <p class="review-desc">{{item.comment}}</p>
+        <form class="review-reply">
+            <input type="text" placeholder="reply your thoughts">
+            <button><i class="icofont-reply"></i>reply</button>
+        </form>
+    </li>
+{% endfor %}

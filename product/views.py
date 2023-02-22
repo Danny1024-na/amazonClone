@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Product,Brand
+from .models import Product,Brand,Reviews
 from django.db.models import Count,Q,F,Func,Value,ExpressionWrapper,DecimalField,FloatField
 from django.db.models.aggregates import Avg,Min,Max,Count
 from django.db.models.functions import Concat
 from .forms import ProductReviewForm
 from django.shortcuts import redirect
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 # Create your views here.
 
 def query_debug(request):
@@ -41,7 +43,13 @@ def add_review(request,slug):
             myForm.user = request.user
             myForm.product = Product.objects.get(slug=slug)
             myForm.save()
-    return redirect(f'/products/{Product.objects.get(slug=slug).slug}')
+
+            #ajax
+            reviews=Reviews.objects.filter(product=Product.objects.get(slug=slug))
+            html=render_to_string('include/allReviews.html',{'reviews':reviews ,request:request})
+            return JsonResponse({'result':html})
+
+    #return redirect(f'/products/{Product.objects.get(slug=slug).slug}')
 
 
 class ProductList(ListView):
@@ -50,6 +58,12 @@ class ProductList(ListView):
 
 class ProductDetail(DetailView):
     model = Product
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["reviews"] = Reviews.objects.filter(Product=self.get_object())
+        return context
+    
 
 class BrandList(ListView):
     model = Brand
