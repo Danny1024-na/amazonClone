@@ -4,6 +4,8 @@ from .models import Product,Brand
 from django.db.models import Count,Q,F,Func,Value,ExpressionWrapper,DecimalField,FloatField
 from django.db.models.aggregates import Avg,Min,Max,Count
 from django.db.models.functions import Concat
+from .forms import ProductReviewForm
+from django.shortcuts import redirect
 # Create your views here.
 
 def query_debug(request):
@@ -30,6 +32,16 @@ def query_debug(request):
 
 
     return render(request,'product\productlist.html',{'data':data})
+
+def addReview(request,slug):
+    if request.method == 'POST':
+        form =ProductReviewForm(request.POST)
+        if form.is_valid():
+            myForm =form.save(commit=False) # denn es gibt User , damit nicht automatisch speichert
+            myForm.user = request.user
+            myForm.product = Product.objects.get(slug=slug)
+            myForm.save()
+    return redirect(f'/products/{Product.objects.get(slug=slug).slug}')
 
 
 class ProductList(ListView):
