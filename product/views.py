@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Product,Brand
-from django.db.models import Count,Q,F
+from django.db.models import Count,Q,F,Func,Value,ExpressionWrapper,DecimalField,FloatField
+from django.db.models.aggregates import Avg,Min,Max,Count
+from django.db.models.functions import Concat
 # Create your views here.
 
 def query_debug(request):
@@ -11,7 +13,22 @@ def query_debug(request):
     #data=Product.objects.all().order_by('-name')
     #data=Product.objects.filter(name__contains='michael ',price__gt=30).order_by('-name')
     #data=Product.objects.only('id','brand')
-    data=Product.objects.select_related('brand').all()
+    #data=Product.objects.select_related('brand').all()
+    
+    #data = Product.objects.aggregate(price_avg=Avg('price'),price_max=Max('price'))
+    #data =Product.objects.annotate(the_new_col=F('quantity')*2)
+
+    #data =Product.objects.annotate(new_name=Func(F('name'),F('quantity'),function='CONCAT'))
+    # data =Product.objects.annotate(
+    #     new_col=Concat('name',Value(' '),'flag')
+    #     )
+
+    data2=Product.objects.annotate(
+        new_col=ExpressionWrapper(F('price')*0.8 , output_field=FloatField())
+    )
+    data=data2.aggregate(name=Max('new_col'))
+
+
     return render(request,'product\productlist.html',{'data':data})
 
 

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'en/css/css/product-details.css' %}">
+<link rel="stylesheet" href="{% static 'en/css/product-details.css' %}">
 {% endblock css %}
 
 {% block body %}
@@ -44,7 +44,7 @@
                                 {% endfor %}
                             </ul>
                             <ul class="details-thumb">
-                                {% for img in object.product_image.all %} 
+                                {% for img in object.product_images.all %} 
                                     <li><img src="{{img.img.url}}" alt="product"></li>
                                 {% endfor %}
                             </ul>
@@ -58,12 +58,12 @@
                                 <p>BRAND:<a href="#">{{product.brand}}</a></p>
                             </div>
                             <div class="details-rating">
-                                <i class="active icofont-star"></i>
-                                <i class="active icofont-star"></i>
-                                <i class="active icofont-star"></i>
-                                <i class="active icofont-star"></i>
-                                <i class="icofont-star"></i>
-                                <a href="#">(3 reviews)</a>
+                                <i class="{% if product.get_avg_rate.rate_Avg > 0 %}active{% endif %} icofont-star"></i>
+                                <i class="{% if product.get_avg_rate.rate_Avg > 1 %}active{% endif %} icofont-star"></i>
+                                <i class="{% if product.get_avg_rate.rate_Avg > 2 %}active{% endif %} icofont-star"></i>
+                                <i class="{% if product.get_avg_rate.rate_Avg > 3 %}active{% endif %} icofont-star"></i>
+                                <i class="{% if product.get_avg_rate.rate_Avg > 4 %}active{% endif %} icofont-star"></i>
+                                <a href="#">({{product.product_review.all|length}})</a>
                             </div>
                             <h3 class="details-price">
                                 <del>{{product.price}}$</del>
@@ -318,12 +318,12 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-rating">
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3)</a>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 0 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 1 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 2 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 3 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 4 %}active{% endif %}"></i>
+                                    <a href="product-video.html">({{object.product_review.all|length}})</a>
                                 </div>
                                 <h6 class="product-name">
                                     <a href="product-video.html">fresh green chilis</a>
@@ -365,12 +365,12 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-rating">
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3)</a>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 0 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 1 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 2 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 3 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 4 %}active{% endif %}"></i>
+                                    <a href="product-video.html">({{object.product_review.all|length}})</a>
                                 </div>
                                 <h6 class="product-name">
                                     <a href="product-video.html">fresh green chilis</a>
@@ -411,12 +411,12 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-rating">
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3)</a>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 0 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 1 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 2 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 3 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 4 %}active{% endif %}"></i>
+                                    <a href="product-video.html">({{object.product_review.all|length}})</a>
                                 </div>
                                 <h6 class="product-name">
                                     <a href="product-video.html">fresh green chilis</a>
@@ -457,12 +457,12 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-rating">
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3)</a>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 0 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 1 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 2 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 3 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 4 %}active{% endif %}"></i>
+                                    <a href="product-video.html">({{object.product_review.all|length}})</a>
                                 </div>
                                 <h6 class="product-name">
                                     <a href="product-video.html">fresh green chilis</a>
@@ -503,12 +503,12 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-rating">
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3)</a>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 0 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 1 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 2 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 3 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 4 %}active{% endif %}"></i>
+                                    <a href="product-video.html">({{object.product_review.all|length}})</a>
                                 </div>
                                 <h6 class="product-name">
                                     <a href="product-video.html">fresh green chilis</a>
@@ -549,12 +549,12 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-rating">
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3)</a>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 0 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 1 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 2 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 3 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 4 %}active{% endif %}"></i>
+                                    <a href="product-video.html">({{object.product_review.all|length}})</a>
                                 </div>
                                 <h6 class="product-name">
                                     <a href="product-video.html">fresh green chilis</a>
@@ -595,12 +595,12 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-rating">
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3)</a>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 0 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 1 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 2 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 3 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 4 %}active{% endif %}"></i>
+                                    <a href="product-video.html">({{object.product_review.all|length}})</a>
                                 </div>
                                 <h6 class="product-name">
                                     <a href="product-video.html">fresh green chilis</a>
@@ -641,12 +641,12 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-rating">
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3)</a>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 0 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 1 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 2 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 3 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 4 %}active{% endif %}"></i>
+                                    <a href="product-video.html">({{object.product_review.all|length}})</a>
                                 </div>
                                 <h6 class="product-name">
                                     <a href="product-video.html">fresh green chilis</a>
@@ -687,12 +687,12 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-rating">
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3)</a>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 0 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 1 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 2 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 3 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 4 %}active{% endif %}"></i>
+                                    <a href="product-video.html">({{object.product_review.all|length}})</a>
                                 </div>
                                 <h6 class="product-name">
                                     <a href="product-video.html">fresh green chilis</a>
@@ -733,12 +733,12 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-rating">
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3)</a>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 0 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 1 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 2 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 3 %}active{% endif %}"></i>
+                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 4 %}active{% endif %}"></i>
+                                    <a href="product-video.html">({{object.product_review.all|length}})</a>
                                 </div>
                                 <h6 class="product-name">
                                     <a href="product-video.html">fresh green chilis</a>

@@ -4,7 +4,7 @@ from taggit.managers import TaggableManager
 from django.utils.translation import gettext_lazy as _ #as _ , um es als _ zu benutzen
 from django.contrib.auth.models import User # um den default User zu importieren und weiter nutzen
 from django.utils.text import slugify
-
+from django.db.models.aggregates import Avg
 
 PRODUCT_FLAG ={
     ('Sale','Sale'),
@@ -40,11 +40,15 @@ class Product(models.Model):
     description = models.TextField(_('description'),max_length=200)
     slug = models.SlugField(null=True,blank=True) # um ein link mit dem Title übereinzustimmen also derselbe Name
     quantity =models.IntegerField(default=1)
+
     def __str__ (self):
         return self.name
     def save (self, *args, **kwargs):
         self.slug =slugify(self.name)
         super(Product,self).save(*args , **kwargs)
+
+    def get_avg_rate(self):
+        return self.product_review.aggregate(rate_Avg=Avg('rate'))
 '''
 name 
 flag

@@ -9,14 +9,16 @@
 <body>
     <h1>Debug</h1>
 
-    <ul>
-        {% for item in data %}
-          <li>
-            {{item}} - {{item.brand}}
-            {% comment %} - {{item.brand}}  {% endcomment %}
-            {% comment %} - {{item.product_review.all|length}} {% endcomment %}
-          </li>
+    {{data}}
+    {% comment %} <ul>
+      {% for item in data %}
+        <li>
+          {{item.price}}
+          - {{item.brand}}
+          - {{item.brand}}
+          - {{item.product_review.all|length}}
+        </li>
         {% endfor %}
-    </ul>
+    </ul> {% endcomment %}
 </body>
 </html>
