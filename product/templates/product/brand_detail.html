@@ -13,7 +13,7 @@
             <div class="container">
                 <h2>Brand Single</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item"><a href="brand-list.html">brand-list</a></li>
                     <li class="breadcrumb-item active" aria-current="page">brand-single</li>
                 </ol>
@@ -31,12 +31,12 @@
             <a href="#"><img src="{{brand.img.url}}" alt="brand"></a>
             <a href="#"><h3>{{brand}}</h3></a>
             <ul>
-                <li class="fas fa-star active"></li>
-                <li class="fas fa-star active"></li>
-                <li class="fas fa-star active"></li>
-                <li class="fas fa-star active"></li>
-                <li class="fas fa-star"></li>
-                <li class="total">(163 ratings)</li>
+                <li class="fas fa_star {% if item.get_avg_rate.rate_Avg > 0 %}active{% endif %}"></li>
+                <li class="fas fa_star {% if item.get_avg_rate.rate_Avg > 1 %}active{% endif %}"></li>
+                <li class="fas fa_star {% if item.get_avg_rate.rate_Avg > 2 %}active{% endif %}"></li>
+                <li class="fas fa_star {% if item.get_avg_rate.rate_Avg > 3 %}active{% endif %}"></li>
+                <li class="fas fa_star {% if item.get_avg_rate.rate_Avg > 4 %}active{% endif %}"></li>
+                <li class="total">({{item.product_review.all|length}} ratings)</li>
             </ul>
             <p>({{brand.prod_count}} items)</p>
         </div>

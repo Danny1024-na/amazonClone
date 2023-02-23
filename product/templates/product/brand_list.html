@@ -13,7 +13,7 @@
             <div class="container">
                 <h2>brand list</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">brand-list</li>
                 </ol>
             </div>
@@ -58,7 +58,7 @@
                     <div class="col all vegetables">
                         <div class="brand-wrap">
                             <div class="brand-media">
-                                <img src="{{object.img.url}}" alt="brand">
+                                <img src="{{object.img.url}}" alt="brand" style='width=203px ; height=135px ;'>
                                 <div class="brand-overlay">
                                 <a href="{% url 'products:brand_detail' object.slug %}"><i class="fas fa-link">
                                     </i></a>
