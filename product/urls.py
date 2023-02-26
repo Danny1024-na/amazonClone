@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import ProductList,ProductDetail,BrandList,BrandDetail,query_debug,add_review
+from .api import productlist_api,ProductSerializer,ProductDetailApi
 
 app_name = 'product'
 
@@ -13,4 +14,12 @@ urlpatterns = [
 
     path('brands/', BrandList.as_view(),name='brand_list'),
     path('brands/<slug:slug>', BrandDetail.as_view() ,name='brand_detail'),
+
+    #api urls
+    path ('api/list', productlist_api,name='product list'),
+    #or
+    #path('api/list', ProductSerializer.as_view() ,name='product list'),
+    path('api/list/<slug:slug>', ProductDetailApi.as_view() ,name='product detail'),
 ]
+
+
