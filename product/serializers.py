@@ -2,12 +2,6 @@ from .models import Product,Brand
 from rest_framework import serializers
 
 
-class BrandSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= Brand
-        exclude =[]
-        fields = '__all__'
-
 
 class ProductSerializer(serializers.ModelSerializer):
     brand =serializers.StringRelatedField() #the brand cloumen in class Produc
@@ -20,3 +14,18 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def myfunc(self,Product):
         return Product.price*1.1
+    
+class BrandListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Brand
+        exclude =[]
+        fields = '__all__'
+
+class BrandDetailSerializer(serializers.ModelSerializer):
+    products= ProductSerializer(source='product_brand',many=True)
+
+    class Meta:
+        model= Brand
+        exclude =[]
+        fields = '__all__'
+
