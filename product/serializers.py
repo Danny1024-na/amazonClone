@@ -1,5 +1,6 @@
 from .models import Product,Brand,Images
 from rest_framework import serializers
+from django.db.models.aggregates import Avg
 
 
 
@@ -24,7 +25,11 @@ class ProductListSerializer(serializers.ModelSerializer):
         return Product.price*1.1
     
     def avg_rate(self,Product):
-        return Product.get_avg_rate()
+       avg= Product.product_review.aggregate(rate_Avg=Avg('rate'))
+       avg_rate=avg['rate_Avg']
+       if avg_rate :
+           return round(avg_rate,2)
+       return 0
     
 class ProductDetailSerializer(serializers.ModelSerializer):
     brand =serializers.StringRelatedField() #the brand cloumen in class Product
