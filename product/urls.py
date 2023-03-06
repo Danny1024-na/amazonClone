@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import ProductList,ProductDetail,BrandList,BrandDetail,query_debug,add_review
-from .api import productlist_api,ProductSerializer,ProductDetailApi
+from .api import productlist_api,ProductSerializer,ProductDetailApi, BrandListApi,BrnadDetailApi
 
 app_name = 'product'
 
@@ -19,7 +19,13 @@ urlpatterns = [
     path ('api/list', productlist_api,name='product list'),
     #or
     #path('api/list', ProductSerializer.as_view() ,name='product list'),
+
+    #beide müssen hier sein ,damit django verstehen kann, dass die Links nicht wie die Links oben
+    path('api/list/brands', BrandListApi.as_view() ,name='brand list'),
+    path('api/list/brands/<slug:slug>', BrnadDetailApi.as_view() ,name='brand detail'),
+
     path('api/list/<slug:slug>', ProductDetailApi.as_view() ,name='product detail'),
+
 ]
 
 
