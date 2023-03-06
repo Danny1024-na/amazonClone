@@ -6,7 +6,7 @@ class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model= Brand
         exclude =[]
-        fields = '__all__'
+        fields = ['name']
 
 
 class ProductSerializer(serializers.ModelSerializer):
