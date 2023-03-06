@@ -6,11 +6,11 @@ class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model= Brand
         exclude =[]
-        fields = ['name']
+        fields = '__all__'
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    brand =BrandSerializer() #the brand cloumen in class Produc
+    brand =serializers.StringRelatedField() #the brand cloumen in class Produc
     price_with_tax = serializers.SerializerMethodField(method_name='myfunc')
 
     class Meta:
