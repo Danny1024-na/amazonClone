@@ -15,6 +15,7 @@ class ProductListSerializer(serializers.ModelSerializer):
     brand =serializers.StringRelatedField() #the brand cloumen in class Product
     price_with_tax = serializers.SerializerMethodField(method_name='myfunc')
     avg= serializers.SerializerMethodField(method_name='avg_rate')
+    review_count =  serializers.SerializerMethodField()
 
     class Meta:
         model = Product
@@ -30,6 +31,10 @@ class ProductListSerializer(serializers.ModelSerializer):
        if avg_rate :
            return round(avg_rate,2)
        return 0
+    
+    def get_review_count(self,Product):
+        return Product.product_review.all().count()
+
     
 class ProductDetailSerializer(serializers.ModelSerializer):
     brand =serializers.StringRelatedField() #the brand cloumen in class Product
