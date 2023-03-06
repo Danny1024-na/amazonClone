@@ -13,7 +13,7 @@ def productlist_api(request):
     return Response({'data':data})
 
 
-class ProductListApi(generics.RetrieveUpdateDestroyAPIView):
+class ProductListApi(generics.CreateAPIView):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
 
