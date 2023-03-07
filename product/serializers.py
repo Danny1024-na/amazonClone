@@ -6,10 +6,11 @@ from django.db.models.aggregates import Avg
 
 
 class ProductReviewSerilaizer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
     class Meta:
         model =Reviews
         exclude=[]
-        fields='__all__'
+        fields=['user','comment','rate','created_at']
 
 
 class ProductImgSerilaizer(serializers.ModelSerializer):
