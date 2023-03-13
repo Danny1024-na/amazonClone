@@ -24,7 +24,7 @@ urlpatterns = [
     path('orders/' ,include('orders.urls',namespace='orders')),
     path('__debug__/', include('debug_toolbar.urls')),
     path('',include('settings.urls',namespace='settings')),
-     path('api-auth/', include('rest_framework.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]
 
 

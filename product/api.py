@@ -4,7 +4,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics
 from .pagination import ResultsSetPagination
-import django_filters.rest_framework
+from django_filters.rest_framework import DjangoFilterBackend
+from .myFilter import ProdcutFilter
 
 
 @api_view(['GET'])
@@ -19,7 +20,9 @@ class ProductListApi(generics.ListCreateAPIView):
     serializer_class = ProductListSerializer
     queryset = Product.objects.all()
     pagination_class = ResultsSetPagination
-    vilterset_fields = ['name','brand','price','flag']
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name','brand','price','flag']
+    filterset_class = ProdcutFilter
 
 
 class ProductDetailApi(generics.RetrieveUpdateDestroyAPIView):
