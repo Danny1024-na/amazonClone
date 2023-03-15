@@ -14,3 +14,16 @@ class Cartserializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
         fields ='__all__'
+
+
+class OrderDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Orderdetail
+        fields ='__all__'
+
+class OrderSerializer(serializers.ModelSerializer):
+    order_detail = OrderDetailSerializer(many=True)
+
+    class Meta:
+        model = Order
+        exclude = ['user']
