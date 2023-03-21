@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', #translation
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -151,3 +152,10 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+# LANGUAGES = [
+#     ('de', _('German')),
+#     ('en', _('English')),
+# ]
+
+LOCALE_PATHS = ['locale/']
