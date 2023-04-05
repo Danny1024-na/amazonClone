@@ -8,3 +8,5 @@ pyparsing==3.0.9
 sqlparse==0.4.3
 tzdata==2022.7
 django-debug-toolbar
+django-tof
+django-rosetta

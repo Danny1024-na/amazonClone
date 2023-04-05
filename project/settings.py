@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'orders',
     'settings',
+    'tof',
+    'rosetta',
     "debug_toolbar",
     'rest_framework',
     'django_filters',
@@ -157,6 +159,7 @@ INTERNAL_IPS = [
 LANGUAGES = [
     ('ar', ('Arabic')),
     ('en', ('English')),
+    ('de', ('Deutsch')),
 ]
 
 LOCALE_PATHS = ['locale/']
