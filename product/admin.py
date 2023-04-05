@@ -2,12 +2,13 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import Product, Brand, Reviews,Images
+from tof.admin import TofAdmin, TranslationTabularInline
 
 class ProductImagesAdmin(admin.TabularInline):
     model = Images
 
 
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(TofAdmin):
     list_display =['id','name','brand','price']
     list_filter = ['brand','price']
     inlines = [ProductImagesAdmin]
