@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-05 11:23+0200\n"
+"POT-Creation-Date: 2023-04-05 12:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
 #: .\product\models.py:16 .\product\models.py:37
 msgid "brand"
 msgstr "النوع"
@@ -69,3 +70,59 @@ msgstr "التعليق"
 #: .\product\models.py:79
 msgid "rate"
 msgstr "التقييم"
+
+#: .\templates\base.html:96
+msgid "offers"
+msgstr "عروض"
+
+#: .\templates\base.html:97
+msgid "need help"
+msgstr "بحاجة مساعدة"
+
+#: .\templates\base.html:98
+msgid "contact us"
+msgstr "اتصل بنا"
+
+#: .\templates\base.html:168
+msgid "home"
+msgstr "الرئيسية"
+
+#: .\templates\base.html:171
+msgid "shop"
+msgstr "التسوق"
+
+#: .\templates\base.html:177
+msgid "shop pages"
+msgstr "صفحة التسوق"
+
+#: .\templates\base.html:189
+#, fuzzy
+#| msgid "product"
+msgid "product pages"
+msgstr "المنتج"
+
+#: .\templates\base.html:200
+msgid "user action"
+msgstr "خيارات"
+
+#: .\templates\base.html:212
+msgid "other pages"
+msgstr "صفحات أخرى"
+
+#: .\templates\base.html:225
+#, fuzzy
+#| msgid "brand"
+msgid "Brands"
+msgstr "الأنواع"
+
+#: .\templates\base.html:228
+msgid "Orders"
+msgstr "الطلبات"
+
+#: .\templates\base.html:235
+msgid "call us"
+msgstr "اتصل بنا"
+
+#: .\templates\base.html:242
+msgid "email us"
+msgstr "تواصل معنا عبر الايميل"

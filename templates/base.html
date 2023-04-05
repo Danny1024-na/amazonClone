@@ -1,8 +1,12 @@
 {% load i18n %}
 {% load static %}
+{% get_current_language as LANGUAGE_CODE %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" {% if LANGUAGE_CODE == "ar" %}
+                    dir="rtl"
+                {% endif %}
+>
     <head>
         <!--=====================================
                     META TAG PART START
@@ -33,6 +37,7 @@
         <!-- FAVICON -->
         <link rel="icon" href="images/favicon.png">
 
+        {% if LANGUAGE_CODE == "en" %}
         <!-- FONTS -->
         <link rel="stylesheet" href="{% static 'en/fonts/flaticon/flaticon.css' %}">
         <link rel="stylesheet" href="{% static 'en/fonts/icofont/icofont.min.css' %}">
@@ -43,13 +48,38 @@
         <link rel="stylesheet" href="{% static 'en/vendor/slickslider/slick.min.css' %}">
         <link rel="stylesheet" href="{% static 'en/vendor/niceselect/nice-select.min.css' %}">
         <link rel="stylesheet" href="{% static 'en/vendor/bootstrap/bootstrap.min.css' %}">
-
         <!-- CUSTOM -->
         <link rel="stylesheet" href="{% static 'en/css/main.css' %}">
 
+        {% endif %}
+
+        {% if LANGUAGE_CODE == "ar" %}
+        <!-- FONTS -->
+        <link rel="stylesheet" href="{% static 'ar/fonts/flaticon/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'ar/fonts/icofont/icofont.min.css' %}">
+        <link rel="stylesheet" href="{% static 'ar/fonts/fontawesome/fontawesome.min.css' %}">
+
+        <!-- VENDOR -->
+        <link rel="stylesheet" href="{% static 'ar/vendor/venobox/venobox.min.css' %}">
+        <link rel="stylesheet" href="{% static 'ar/vendor/slickslider/slick.min.css' %}">
+        <link rel="stylesheet" href="{% static 'ar/vendor/niceselect/nice-select.min.css' %}">
+        <link rel="stylesheet" href="{% static 'ar/vendor/bootstrap/bootstrap.min.css' %}">
+        <!-- CUSTOM -->
+        <link rel="stylesheet" href="{% static 'ar/css/main.css' %}">
+
+        {% endif %}
+        
+
         {% block css %}
-        <link rel="stylesheet" href="{% static 'en/css/index.css' %}">
+            {% if LANGUAGE_CODE == "en" %}
+                <link rel="stylesheet" href="{% static 'en/css/index.css' %}">
+            {% endif %}
+
+            {% if LANGUAGE_CODE == "ar" %}
+                <link rel="stylesheet" href="{% static 'ar/css/index.css' %}">
+            {% endif %}
         {% endblock css %}
+        
         
         <!--=====================================
                     CSS LINK PART END
@@ -93,9 +123,9 @@
                     </div>
                     <div class="col-md-7 col-lg-4">
                         <ul class="header-top-list">
-                            <li><a href="offer.html">offers</a></li>
-                            <li><a href="faq.html">need help</a></li>
-                            <li><a href="contact.html">contact us</a></li>
+                            <li><a href="offer.html">{% translate "offers" %}</a></li>
+                            <li><a href="faq.html">{% translate "need help" %}</a></li>
+                            <li><a href="contact.html">{% translate "contact us" %}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -165,16 +195,16 @@
                         <div class="navbar-content">
                             <ul class="navbar-list">
                                 <li class="navbar-item dropdown">
-                                    <a class="navbar-link" href="/">home</a>
+                                    <a class="navbar-link" href="/">{% translate "home" %}</a>
                                 </li>
                                 <li class="navbar-item dropdown-megamenu">
-                                    <a class="navbar-link" href="{% url 'products:product_list' %}">shop</a>
+                                    <a class="navbar-link" href="{% url 'products:product_list' %}">{% translate "shop" %}</a>
                                     <div class="megamenu">
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-lg-3">
                                                     <div class="megamenu-wrap">
-                                                        <h5 class="megamenu-title">shop pages</h5>
+                                                        <h5 class="megamenu-title">{% translate "shop pages" %}</h5>
                                                         <ul class="megamenu-list">
                                                             <li><a href="shop-5column.html">shop 5 column</a></li>
                                                             <li><a href="shop-4column.html">shop 4 column</a></li>
@@ -186,7 +216,7 @@
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <div class="megamenu-wrap">
-                                                        <h5 class="megamenu-title">product pages</h5>
+                                                        <h5 class="megamenu-title">{% translate "product pages" %}</h5>
                                                         <ul class="megamenu-list">
                                                             <li><a href="product-tab.html">product single tab</a></li>
                                                             <li><a href="product-grid.html">product single grid</a></li>
@@ -197,7 +227,7 @@
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <div class="megamenu-wrap">
-                                                        <h5 class="megamenu-title">user action</h5>
+                                                        <h5 class="megamenu-title">{% translate "user action" %}</h5>
                                                         <ul class="megamenu-list">
                                                             <li><a href="wishlist.html">wishlist</a></li>
                                                             <li><a href="compare.html">compare</a></li>
@@ -209,7 +239,7 @@
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <div class="megamenu-wrap">
-                                                        <h5 class="megamenu-title">other pages</h5>
+                                                        <h5 class="megamenu-title">{% translate "other pages" %}</h5>
                                                         <ul class="megamenu-list">
                                                             <li><a href="all-category.html">all Category</a></li>
                                                             <li><a href="brand-list.html">brand list</a></li>
@@ -222,24 +252,24 @@
                                     </div>
                                 </li>
                                 <li class="navbar-item dropdown">
-                                    <a class="navbar-link" href="{% url 'products:brand_list' %}">Brands</a>
+                                    <a class="navbar-link" href="{% url 'products:brand_list' %}">{% translate "Brands" %}</a>
                                 </li>
                                 <li class="navbar-item dropdown">
-                                    <a class="navbar-link" href="{% url 'orders:order_list' %}">Orders</a>
+                                    <a class="navbar-link" href="{% url 'orders:order_list' %}">{% translate "Orders" %}</a>
                                 </li>
                             </ul>
                             <div class="navbar-info-group">
                                 <div class="navbar-info">
                                     <i class="icofont-ui-touch-phone"></i>
                                     <p>
-                                        <small>call us</small>
+                                        <small>{% translate "call us" %}</small>
                                         <span>(+880) 183 8288 389</span>
                                     </p>
                                 </div>
                                 <div class="navbar-info">
                                     <i class="icofont-ui-email"></i>
                                     <p>
-                                        <small>email us</small>
+                                        <small>{% translate "email us" %}</small>
                                         <span>support@greeny.com</span>
                                     </p>
                                 </div>
@@ -909,22 +939,43 @@
         <!--=====================================
                     JS LINK PART START
         =======================================-->
-        <!-- VENDOR -->
-        <script src="{% static 'en/vendor/bootstrap/jquery-1.12.4.min.js' %}"></script>
-        <script src="{% static 'en/vendor/bootstrap/popper.min.js' %}"></script>
-        <script src="{% static 'en/vendor/bootstrap/bootstrap.min.js' %}"></script>
-        <script src="{% static 'en/vendor/countdown/countdown.min.js' %}"></script>
-        <script src="{% static 'en/vendor/niceselect/nice-select.min.js' %}"></script>
-        <script src="{% static 'en/vendor/slickslider/slick.min.js' %}"></script>
-        <script src="{% static 'en/vendor/venobox/venobox.min.js' %}"></script>
 
-        <!-- CUSTOM -->
-        <script src="{% static 'en/js/nice-select.js' %}"></script>
-        <script src="{% static 'en/js/countdown.js' %}"></script>
-        <script src="{% static 'en/js/accordion.js' %}"></script>
-        <script src="{% static 'en/js/venobox.js' %}"></script>
-        <script src="{% static 'en/js/slick.js' %}"></script>
-        <script src="{% static 'en/js/main.js' %}"></script> 
+        {% if LANGUAGE_CODE == "en" %}
+            <!-- VENDOR -->
+            <script src="{% static 'en/vendor/bootstrap/jquery-1.12.4.min.js' %}"></script>
+            <script src="{% static 'en/vendor/bootstrap/popper.min.js' %}"></script>
+            <script src="{% static 'en/vendor/bootstrap/bootstrap.min.js' %}"></script>
+            <script src="{% static 'en/vendor/countdown/countdown.min.js' %}"></script>
+            <script src="{% static 'en/vendor/niceselect/nice-select.min.js' %}"></script>
+            <script src="{% static 'en/vendor/slickslider/slick.min.js' %}"></script>
+            <script src="{% static 'en/vendor/venobox/venobox.min.js' %}"></script>
+
+            <!-- CUSTOM -->
+            <script src="{% static 'en/js/nice-select.js' %}"></script>
+            <script src="{% static 'en/js/countdown.js' %}"></script>
+            <script src="{% static 'en/js/accordion.js' %}"></script>
+            <script src="{% static 'en/js/venobox.js' %}"></script>
+            <script src="{% static 'en/js/slick.js' %}"></script>
+            <script src="{% static 'en/js/main.js' %}"></script> 
+        {% endif %}
+        {% if LANGUAGE_CODE == "ar" %}
+            <!-- VENDOR -->
+            <script src="{% static 'ar/vendor/bootstrap/jquery-1.12.4.min.js' %}"></script>
+            <script src="{% static 'ar/vendor/bootstrap/popper.min.js' %}"></script>
+            <script src="{% static 'ar/vendor/bootstrap/bootstrap.min.js' %}"></script>
+            <script src="{% static 'ar/vendor/countdown/countdown.min.js' %}"></script>
+            <script src="{% static 'ar/vendor/niceselect/nice-select.min.js' %}"></script>
+            <script src="{% static 'ar/vendor/slickslider/slick.min.js' %}"></script>
+            <script src="{% static 'ar/vendor/venobox/venobox.min.js' %}"></script>
+
+            <!-- CUSTOM -->
+            <script src="{% static 'ar/js/nice-select.js' %}"></script>
+            <script src="{% static 'ar/js/countdown.js' %}"></script>
+            <script src="{% static 'ar/js/accordion.js' %}"></script>
+            <script src="{% static 'ar/js/venobox.js' %}"></script>
+            <script src="{% static 'ar/js/slick.js' %}"></script>
+            <script src="{% static 'ar/js/main.js' %}"></script> 
+        {% endif %}
         <!--=====================================
                     JS LINK PART END
         =======================================-->
