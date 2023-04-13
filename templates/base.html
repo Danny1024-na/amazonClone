@@ -4,8 +4,8 @@
 
 <!DOCTYPE html>
 <html lang="en" {% if LANGUAGE_CODE == "ar" %}
-                    dir="rtl"
-                {% endif %}
+dir="rtl"
+{% endif %}
 >
     <head>
         <!--=====================================
@@ -77,7 +77,7 @@
 
             {% if LANGUAGE_CODE == "ar" %}
                 <link rel="stylesheet" href="{% static 'ar/css/index.css' %}">
-            {% endif %}
+            {% endif %} 
         {% endblock css %}
         
         

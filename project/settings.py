@@ -159,7 +159,6 @@ INTERNAL_IPS = [
 LANGUAGES = [
     ('ar', ('Arabic')),
     ('en', ('English')),
-    ('de', ('Deutsch')),
 ]
 
 LOCALE_PATHS = ['locale/']
