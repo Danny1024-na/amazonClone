@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect
 from .models import Profile,Address,ContactNumbers
-from .forms import *
+from .forms import Activate,SignUpForm
 from django.core.mail import send_mail
 # Create your views here.
 
@@ -17,19 +17,31 @@ def signUp(request):
 
             send_mail(
                     "Actiavate ur account",
-                    f"Welcome {username} \n use this code {{profile.code}} to actiavte ur account... \n Green-Sotre",
+                    f"Welcome {username} \n use this code {profile.code} to actiavte ur account... \n Green-Sotre",
                     "danina964@gmail.com",
                     [email],
                     fail_silently=False,
                     )
-            return redirect(f'/account/{username}/activate')
+        return redirect(f'/accounts/{username}/activate')
     else:
         form = SignUpForm()
         
     return render(request,'accounts/signUp.html',{'form':form})
 
 def activate(request,username):
-    pass 
+    profile= Profile.objects.get(user__username=username)
+    if request.method == 'POST':
+        form =Activate(request.POST)
+        if form.is_valid():
+            code =form.cleaned_data['code']
+            if code == profile.code:
+                profile.code =''
+                profile.save()
+                return redirect('/accounts/login')
+    else:
+        form =Activate()
+    return render(request,'accounts/activate.html',{'form':form})
+    
 
 def profile(request):
     profile=Profile.objects.get(user=request.user)
