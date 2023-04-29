@@ -10,3 +10,4 @@ tzdata==2022.7
 django-debug-toolbar
 django-tof
 django-rosetta
+django-bootstrap5

@@ -2,15 +2,16 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-class signUpForm(UserCreationForm):
+class SignUpForm(UserCreationForm):
     class Meta:
         model =User
-        Fields =[
+        fields =[
             'username',
             'email',
-            'password1'
+            'password1',
             'password2',
         ]
+        exclude =[]
 
-class activate(forms.Form):
+class Activate(forms.Form):
     code =forms.CharField(max_length=8)
