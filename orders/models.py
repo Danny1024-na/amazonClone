@@ -17,6 +17,12 @@ class Cart(models.Model):
     # def __str__(self):
     #     return self.order_code
 
+    def cart_total(self):
+        total=0
+        for product in self.cart_detail.all():
+            total += product.total
+        return round(total,2)
+
 
 class Cartdetail(models.Model):
     cart=models.ForeignKey(Cart,related_name='cart_detail',on_delete=models.CASCADE)
