@@ -20,7 +20,7 @@ class Cart(models.Model):
     def cart_total(self):
         total=0
         for product in self.cart_detail.all():
-            total += product.total
+            total += round(product.total,2)
         return round(total,2)
 
 
@@ -32,7 +32,7 @@ class Cartdetail(models.Model):
     quantitiy =models.IntegerField(default=1)
 
     def __str__(self) -> str:
-        return str(self.cart)
+        return str(self.product)
 
     def save(self, *args, **kwargs):
        self.total=self.price*self.quantitiy
