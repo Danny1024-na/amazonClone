@@ -7,7 +7,7 @@ app_name ='orders'
 urlpatterns = [
     path('',OrderList.as_view(),name='order_list'),
     path('add-to-cart',add_to_cart,name='add_to_cart'),
-    path('remove-to-cart',remove_to_cart,name='remove_to_cart'),
+    path('remove-to-cart/<int:id>',remove_to_cart,name='remove_to_cart'),
     path('checkout',checkout,name='checkout'),
 
     path("api/<str:username>/cart", CartDetailCreatApi.as_view(), name=""),

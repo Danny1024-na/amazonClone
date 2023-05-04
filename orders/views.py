@@ -19,11 +19,20 @@ def add_to_cart(request):
     cart_detail.save()
     return redirect(f'/products/{product.slug}')
 
-def remove_to_cart(request):
-    pass
+def remove_to_cart(request,id):
+    cart_detail= Cartdetail.objects.get(id=id)
+    cart_detail.delete()
+    return redirect('/products')
 
 def checkout(request):
-    pass
+    cart = Cart.objects.get(user=request.user, orderStatus='Inprogress')
+    cart_detail=Cartdetail.objects.filter(cart=cart)
+
+    delivery_fee = 50
+    total =delivery_fee + cart.cart_total()
+    discount=0
+    sub_total =cart.cart_total()
+    return render(request,'orders/checkout.html',{'cart':cart , 'cart_detail':cart_detail , 'delivery_fee':delivery_fee , 'total':total ,'sub_total':sub_total , 'discount':discount})
 
 def invoice(request):
     pass
