@@ -34,9 +34,9 @@ class Cartdetail(models.Model):
     def __str__(self) -> str:
         return str(self.product)
 
-    def save(self, *args, **kwargs):
-       self.total=self.price*self.quantitiy
-       super(Cartdetail, self).save(*args, **kwargs) # Call the real save() method
+    # def save(self, *args, **kwargs):
+    #    self.total=self.price*self.quantitiy
+    #    super(Cartdetail, self).save(*args, **kwargs) # Call the real save() method
 
 
 ORDER_STATUS =(
