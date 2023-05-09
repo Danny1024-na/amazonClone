@@ -71,3 +71,15 @@ class Orderdetail(models.Model):
     def save(self, *args, **kwargs):
        self.total=self.price*self.quantitiy
        super(Orderdetail, self).save(*args, **kwargs) # Call the real save() method
+
+class Coupon(models.Model):
+    code = models.CharField(max_length=25)
+    from_date = models.DateField(default=timezone.now)
+    to_date =models.DateField(default=timezone.now)
+    quantity = models.IntegerField()
+    value =models.FloatField()
+
+
+    def __str__(self):
+        return self.code
+    
