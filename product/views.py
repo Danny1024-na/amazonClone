@@ -8,8 +8,12 @@ from .forms import ProductReviewForm
 from django.shortcuts import redirect
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator # caching in a class
 # Create your views here.
 
+@cache_page(60*2) # will cache for tow minutes
 def query_debug(request):
     #data=Product.objects.filter(name__contains='michael ',price__gt=30)
     #data=Product.objects.filter(Q(name__contains='michael') | Q (price__gt=30))
@@ -70,11 +74,14 @@ class BrandList(ListView):
     paginate_by =50
     queryset=Brand.objects.all().annotate(prod_count=Count('product_brand')) # data zurück [:1] return nur erste Brand
 
+
+
 class BrandDetail(ListView):
     model = Product ### Achtuuuunnnnggggg!!!!
     paginate_by =50
     template_name="product\\brand_detail.html"
 
+    @method_decorator(cache_page(60*1))
     def get_queryset(self):
         brand =Brand.objects.get(slug=self.kwargs['slug'])
         queryset=Product.objects.filter(brand=brand)
