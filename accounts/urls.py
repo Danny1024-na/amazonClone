@@ -8,4 +8,5 @@ urlpatterns = [
     path('profile/',profile,name='profile'),
     path('dashboard',dashboard,name='dashboard'),
     path('<str:username>/activate',activate,name='activate'),
+    path('test-celery',test_send,name='test_celery'),
 ]
