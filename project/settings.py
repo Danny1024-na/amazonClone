@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-($^ec5widmxp0tfkjkm222*8%_coy^il9_t2u^ee(*&e&0j(^*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['amazonclone-production-8c25.up.railway.app',
-                 ]
+ALLOWED_HOSTS = [{'amazonclone-production-8c25.up.railway.app'},]
 
 
 # Application definition
