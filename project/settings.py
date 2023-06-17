@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware', #translation
     'django.middleware.common.CommonMiddleware',
@@ -199,3 +200,7 @@ CACHES = {
 
 STRIPE_TEST_API_KEY = 'dein_test_api_schluessel'
 STRIPE_LIVE_API_KEY = 'dein_live_api_schluessel'
+
+#deplooy whitenoise
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
