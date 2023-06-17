@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-($^ec5widmxp0tfkjkm222*8%_coy^il9_t2u^ee(*&e&0j(^*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['amazonclone-production-8c25.up.railway.app',
+                 ]
 
 
 # Application definition
@@ -201,6 +202,6 @@ CACHES = {
 STRIPE_TEST_API_KEY = 'dein_test_api_schluessel'
 STRIPE_LIVE_API_KEY = 'dein_live_api_schluessel'
 
-#deplooy whitenoise
+#deploy whitenoise
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
