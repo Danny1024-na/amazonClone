@@ -89,23 +89,24 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES ={
+DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        "NAME" : "greeny",
-        "USER" : "postgres",
-        "PASSWORD" : "postgres",
-        "HOST" : "db",
-        "PORT" : 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+#for docker
+# DATABASES ={
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         "NAME" : "greeny",
+#         "USER" : "postgres",
+#         "PASSWORD" : "postgres",
+#         "HOST" : "db",
+#         "PORT" : 5432,
+#     }
+# }
 
 #class based view api
 REST_FRAMEWORK = {
@@ -195,3 +196,6 @@ CACHES = {
         "LOCATION": "redis://127.0.0.1:6379",
     }
 }
+
+STRIPE_TEST_API_KEY = 'dein_test_api_schluessel'
+STRIPE_LIVE_API_KEY = 'dein_live_api_schluessel'

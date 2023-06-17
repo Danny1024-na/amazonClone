@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'en/css/checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'en/css/checkout.css' %}">
 {% endblock css %}
-
 {% block body %}
+
         <!--=====================================
                     BANNER PART START
         =======================================-->
@@ -51,32 +51,32 @@
                                         </thead>
                                         <tbody>
                                             {% for item in cart_detail %}
-                                            <tr>
-                                                <td class="table-serial"><h6>01</h6></td>
-                                                <td class="table-image"><img src="{{item.product.img.url}}" alt="product"></td>
-                                                <td class="table-name"><h6>{{item}}</h6></td>
-                                                <td class="table-price"><h6>${{item.price}}<small>/kilo</small></h6></td>
-                                                <td class="table-brand"><h6>{{item.brand}}</h6></td>
-                                                <td class="table-quantity"><h6>{{item.quantitiy}}</h6></td>
-                                                <td class="table-action">
-                                                    <a class="view" href="#" title="{% url 'products:product_detail' item.product.slug %}" data-bs-toggle="modal" data-bs-target="#product-view"><i class="fas fa-eye"></i></a>
-                                                    <a class="trash" href="#" title="{% url 'orders:remove_to_cart' item.id %}"><i class="icofont-trash"></i></a>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td class="table-serial"><h6>{{item.product.sku}}</h6></td>
+                                                    <td class="table-image"><img src="{{item.product.image.url}}" alt="product"></td>
+                                                    <td class="table-name"><h6>{{item}}</h6></td>
+                                                    <td class="table-price"><h6>${{item.price}}</h6></td>
+                                                    <td class="table-brand"><h6>{{item.product.brand}}</h6></td>
+                                                    <td class="table-quantity"><h6>{{item.quantity}}</h6></td>
+                                                    <td class="table-action">
+                                                        <a class="view" href="{% url 'products:product_detail' item.product.slug %}" title="Quick View" data-bs-toggle="modal" data-bs-target="#product-view"><i class="fas fa-eye"></i></a>
+                                                        <a class="trash" href="{% url 'orders:remove_from_Cart' item.id %}" title="Remove Wishlist"><i class="icofont-trash"></i></a>
+                                                    </td>
+                                                </tr>
                                             {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="chekout-coupon">
                                     <button class="coupon-btn">Do you have a coupon code?</button>
-                                    <form class="coupon-form" id="coupon_form" method="post">
+                                    <form class="coupon-form" id="couponForm" method="post">
                                         {% csrf_token %}
                                         <input type="text" name="coupon" placeholder="Enter your coupon code">
                                         <button type="submit"><span>apply</span></button>
                                     </form>
                                 </div>
-                                <div class="checkout-charge" id = 'total_div'>
-                                    {% include 'include/checkout_table.html' %}
+                                <div class="checkout-charge" id="total_div">
+                                        {% include 'include/checkout_table.html' %}
                                 </div>
                             </div>
                         </div>
@@ -226,7 +226,7 @@
                                                 <span>****</span>
                                                 <sup>1876</sup>
                                             </p>
-                                            <h5>miron mahmud</h5>
+                                            <h5>someone</h5>
                                             <button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button>
                                         </div>
                                     </div>
@@ -240,18 +240,14 @@
                                                 <span>****</span>
                                                 <sup>1876</sup>
                                             </p>
-                                            <h5>miron mahmud</h5>
+                                            <h5>someone</h5>
                                             <button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="checkout-check">
-                                <input type="checkbox" id="checkout-check">
-                                <label for="checkout-check">By making this purchase you agree to our <a href="#">Terms and Conditions</a>.</label>
-                            </div>
                             <div class="checkout-proced">
-                                <a href="invoice.html" class="btn btn-inline">proced to checkout</a>
+                                <button id="checkout-button" class="btn btn-inline">proced to checkout</button>
                             </div>
                         </div>
                     </div>
@@ -407,10 +403,47 @@
                     MODAL EDIT FORM END
         =======================================-->
 
+        <div class=" container mt-5">
+            <script src="https://js.stripe.com/v3/"></script>
+            <script>
+            var stripe = Stripe('pk_test_3sqoDy4uTimfP9g265xD4SOT');
+            document.getElementById('checkout-button').addEventListener('click', function() {
+                // Get the amount from the input field
+                var amount = parseFloat("{{cart.cart_total}}")*100;
+                console.log(amount)
+                
+                // Call the create_checkout_session view to create a new session
+                fetch('create_checkout_session/', {
+                    method: 'POST',
+                    body: 'amount=' + amount,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                })
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    // Redirect to the Checkout page with the session ID
+                    stripe.redirectToCheckout({
+                        sessionId: data.sessionId
+                    });
+                })
+                .catch(function(error) {
+                    console.error('Error:', error);
+                });
+            });
+            </script>
+
+        </div>
+
+
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
             $(document).ready(function(e){
-                $(document).on('submit','#coupon_form',function(e){
+                $(document).on('submit','#couponForm',function(e){
                     e.preventDefault();
                     $.ajax({
                         type: $(this).attr('method'),
@@ -425,4 +458,7 @@
                 })
             })
         </script>
+
+
+
 {% endblock body %}
