@@ -204,3 +204,5 @@ STRIPE_LIVE_API_KEY = 'dein_live_api_schluessel'
 #deploy whitenoise
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+STATIC_ROOT = 'C:\Users\Danny\mystro\AmazonClone\src\media'
