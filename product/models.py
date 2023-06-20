@@ -72,6 +72,7 @@ img
 product: foreignkey
 '''
 
+
 class Reviews(models.Model):
     Product = models.ForeignKey(Product,verbose_name=_('product'),related_name='product_review',on_delete=models.CASCADE)
     user= models.ForeignKey(User,verbose_name=_('user'),related_name='review_author',on_delete=models.SET_NULL , null=True, blank=True) # um die reviews nicht zu löchen falls den User gelöscht ist

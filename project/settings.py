@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-($^ec5widmxp0tfkjkm222*8%_coy^il9_t2u^ee(*&e&0j(^*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware', #translation
     'django.middleware.common.CommonMiddleware',
@@ -89,23 +90,24 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES ={
+DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        "NAME" : "greeny",
-        "USER" : "postgres",
-        "PASSWORD" : "postgres",
-        "HOST" : "db",
-        "PORT" : 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+#for docker
+# DATABASES ={
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         "NAME" : "greeny",
+#         "USER" : "postgres",
+#         "PASSWORD" : "postgres",
+#         "HOST" : "db",
+#         "PORT" : 5432,
+#     }
+# }
 
 #class based view api
 REST_FRAMEWORK = {
@@ -154,6 +156,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     '/var/www/static/',
 ]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / "media"
@@ -195,3 +198,12 @@ CACHES = {
         "LOCATION": "redis://127.0.0.1:6379",
     }
 }
+
+STRIPE_TEST_API_KEY = 'dein_test_api_schluessel'
+STRIPE_LIVE_API_KEY = 'dein_live_api_schluessel'
+
+#deploy whitenoise
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+STATIC_ROOT = 'C:\Users\Danny\mystro\AmazonClone\src\media'
